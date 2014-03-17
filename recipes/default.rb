@@ -11,7 +11,7 @@ require 'base64'
 
 
 if node[:rax_serf][:raw_encrypt_key]
-  node.set[:serf][:agent][:encryption][:encrypt_key] =
+  node.set[:serf][:agent][:encryption][:encrypt_key] =      \
     Base64.encode64(node[:rax_serf][:raw_encrypt_key]).chop
 end
 
