@@ -18,14 +18,22 @@ end
 node.set[:serf][:version] = '0.5.0'
 node.set[:serf][:agent][:interface] = 'eth2'
 
+serf_node_name = ''
+
 node[:network][:interfaces][:eth0][:addresses].each_pair do |addr,info|
   Chef::Log.info("evaluating address #{addr}")
   if info[:family] == 'inet'
     Chef::Log.info("looks like #{addr} is inet")
-    node.set[:serf][:node_name] = node[:hostname] + "-" + addr
-    Chef::Log.info("set node_name to #{node[:serf][:node_name]}")
+    serf_node_name = node[:hostname] + "-" + addr
+    Chef::Log.info("set serf_node_name to #{serf_node_name}")
     break
   end
 end
+
+Chef::Log.info("serf_node_name is #{serf_node_name}")
+
+node.set[:serf][:node_name] = serf_node_name
+
+Chef::Log.info("serf node_name is #{node[:serf][:node_name]}")
 
 include_recipe 'serf::default'
