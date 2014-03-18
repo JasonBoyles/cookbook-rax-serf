@@ -15,6 +15,7 @@ if node[:rax_serf][:raw_encrypt_key]
     Base64.encode64(node[:rax_serf][:raw_encrypt_key]).chop
 end
 
+node.ser[:serf][:version] = '0.5.0'
 node.set[:serf][:agent][:interface] = 'eth2'
 
 include_recipe 'serf::default'
