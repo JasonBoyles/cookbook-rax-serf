@@ -18,4 +18,11 @@ end
 node.set[:serf][:version] = '0.5.0'
 node.set[:serf][:agent][:interface] = 'eth2'
 
+node[:network][:interfaces][:eth0][:addresses].each_pair do |addr,info|
+  if info[:family] == 'inet'
+    node.set[:serf][:node_name] = node[:hostname] + "-" + addr
+    break
+  end
+end
+
 include_recipe 'serf::default'
