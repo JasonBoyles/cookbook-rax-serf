@@ -17,6 +17,7 @@ end
 
 node.set[:serf][:version] = '0.5.0'
 node.set[:serf][:agent][:interface] = 'eth2'
+node.set[:serf][:agent][:snapshot_path] = node[:serf][:base_directory]
 node.set[:serf][:user] = 'root'
 node.set[:serf][:group] = 'root'
 
