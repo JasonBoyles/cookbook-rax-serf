@@ -17,6 +17,8 @@ end
 
 node.set[:serf][:version] = '0.5.0'
 node.set[:serf][:agent][:interface] = 'eth2'
+node.set[:serf][:user] = 'root'
+node.set[:serf][:group] = 'root'
 
 serf_node_name = ''
 
@@ -33,6 +35,7 @@ end
 Chef::Log.info("serf_node_name is #{serf_node_name}")
 
 node.set[:serf][:agent][:node_name] = serf_node_name
+
 
 Chef::Log.info("serf node_name is #{node[:serf][:node_name]}")
 
