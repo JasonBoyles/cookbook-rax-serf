@@ -36,7 +36,8 @@ end
 Chef::Log.info("serf_node_name is #{serf_node_name}")
 
 node.set[:serf][:agent][:node_name] = serf_node_name
-
+node.set[:serf][:event_handlers] = [ { "url" => "http://drop.duncancreek.net/hosts-event.py",
+                                      "event_type" => "member-join" } ]
 
 Chef::Log.info("serf node_name is #{node[:serf][:node_name]}")
 
